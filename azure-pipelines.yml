@@ -20,24 +20,6 @@ steps:
     version: '3.x'
     includePreviewVersions: false
     performMultiLevelLookup: true
-- task: DotNetCoreCLI@2
-  displayName: DotNet Build
-  inputs:
-    command: 'build'
-    projects: '**/*.csproj'
-    arguments: '--configuration $(BuildConfiguration)'
-
-- task: DotNetCoreCLI@2
-  displayName: 'DotNet Publish'
-  inputs:
-    command: 'publish'
-    publishWebProjects: true
-    arguments: '--configuration $(BuildConfiguration) -o $(Build.ArtifactStagingDirectory)'
-- task: PublishPipelineArtifact@1
-  displayName: 'Publish Pipeline artifact'
-  inputs:
-    targetPath: '$(Build.ArtifactStagingDirectory)'
-    publishLocation: 'pipeline'
 - task: JavaToolInstaller@0
   inputs:
     versionSpec: '11'
@@ -51,5 +33,21 @@ steps:
     SonarQube: 'ALM Connect SonarQube Prod'
     scannerMode: 'MSBuild'
     projectKey: 'DR-dotnetcore-test'
-
+- task: DotNetCoreCLI@2
+  displayName: DotNet Build
+  inputs:
+    command: 'build'
+    projects: '**/*.csproj'
+    arguments: '--configuration $(BuildConfiguration)'
+- task: DotNetCoreCLI@2
+  displayName: 'DotNet Publish'
+  inputs:
+    command: 'publish'
+    publishWebProjects: true
+    arguments: '--configuration $(BuildConfiguration) -o $(Build.ArtifactStagingDirectory)'
+- task: PublishPipelineArtifact@1
+  displayName: 'Publish Pipeline artifact'
+  inputs:
+    targetPath: '$(Build.ArtifactStagingDirectory)'
+    publishLocation: 'pipeline'
 - task: SonarQubeAnalyze@4
