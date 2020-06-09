@@ -1,0 +1,18 @@
+resources:
+  repositories:
+    - repository: templates
+      type: git
+      name: ALM/devops_pipelines
+
+trigger:
+- master
+
+stages:
+  - stage: Build
+    jobs:
+      - job:
+        variables:
+          buildConfiguration: 'Release'
+        pool:
+          name: Default
+          steps:
