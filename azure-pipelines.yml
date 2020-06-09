@@ -20,18 +20,18 @@ steps:
     version: '3.x'
     includePreviewVersions: false
     performMultiLevelLookup: true
+- task: SonarQubePrepare@4
+  inputs:
+    SonarQube: 'ALM Connect SonarQube Prod'
+    scannerMode: 'MSBuild'
+    projectKey: 'DR-dotnetcore-test'
 - task: DotNetCoreCLI@2
   displayName: DotNet Build
   inputs:
     command: 'build'
     projects: '**/*.csproj'
     arguments: '--configuration $(BuildConfiguration)'
-- task: DotNetCoreCLI@2
-  displayName: DotNetTest
-  inputs:
-    command: 'test'
-    projects: '**/*Tests/*.csproj'
-    arguments: '--configuration $(BuildConfiguration)'
+- task: SonarQubeAnalyze@4
 - task: DotNetCoreCLI@2
   displayName: 'DotNet Publish'
   inputs:
