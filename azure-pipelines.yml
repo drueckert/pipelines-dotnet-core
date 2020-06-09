@@ -43,7 +43,7 @@ steps:
     versionSpec: '11'
     jdkArchitectureOption: 'x64'
     jdkSourceOption: 'LocalDirectory'
-    jdkFile: '/opt/java/OpenJDK11U-jdk_x64_linux_hotspot_11.0.7_10.tar.gz'
+    jdkFile: 'f:\java\OpenJDK11U-jdk_x64_windows_hotspot_11.0.7_10.zip'
     jdkDestinationDirectory: '$(Agent.HomeDirectory)/java'
     cleanDestinationDirectory: true
 - task: SonarQubePrepare@4
