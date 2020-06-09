@@ -20,11 +20,6 @@ steps:
     version: '3.x'
     includePreviewVersions: false
     performMultiLevelLookup: true
-- task: SonarQubePrepare@4
-  inputs:
-    SonarQube: 'ALM Connect SonarQube Prod'
-    scannerMode: 'MSBuild'
-    projectKey: 'DR-dotnetcore-test'
 - task: DotNetCoreCLI@2
   displayName: DotNet Build
   inputs:
@@ -43,4 +38,18 @@ steps:
   inputs:
     targetPath: '$(Build.ArtifactStagingDirectory)'
     publishLocation: 'pipeline'
+- task: JavaToolInstaller@0
+  inputs:
+    versionSpec: '11'
+    jdkArchitectureOption: 'x64'
+    jdkSourceOption: 'LocalDirectory'
+    jdkFile: '''/opt/java/OpenJDK11U-jdk_x64_linux_hotspot_11.0.7_10.tar.gz'''
+    jdkDestinationDirectory: '''$(Agent.HomeDirectory)/java'''
+    cleanDestinationDirectory: true
+- task: SonarQubePrepare@4
+  inputs:
+    SonarQube: 'ALM Connect SonarQube Prod'
+    scannerMode: 'MSBuild'
+    projectKey: 'DR-dotnetcore-test'
 
+- task: SonarQubeAnalyze@4
