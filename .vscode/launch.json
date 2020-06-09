@@ -9,7 +9,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/bin/Debug/netcoreapp2.2/pipelines-dotnet-core.dll",
+            "program": "${workspaceFolder}/pipelines-dotnet-core/bin/Debug/netcoreapp2.2/pipelines-dotnet-core.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
@@ -21,7 +21,7 @@
                 "ASPNETCORE_ENVIRONMENT": "Development"
             },
             "sourceFileMap": {
-                "/Views": "${workspaceFolder}/Views"
+                "/Views": "${workspaceFolder}/pipelines-dotnet-core/Views"
             }
         },
         {

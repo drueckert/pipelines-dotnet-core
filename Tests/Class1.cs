@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace tests
+namespace pipelines_dotnet_core.tests
 {
     public class Test1
     {
