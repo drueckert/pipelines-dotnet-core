@@ -1,8 +1,9 @@
 resources:
   repositories:
-    - repository: templates
+    - repository: 'AlmTemplates'
       type: git
       name: ALM/devops_pipelines
+      ref: develop
 
 trigger:
 - master
@@ -16,3 +17,16 @@ stages:
         pool:
           name: Default
           steps:
+          - template: 'templates/.netcore-build.yml@AlmTemplates'
+            parameters:
+              AppName: 'David dotnet core Test'
+              Portfolio: 'ESM'
+              # DotNetVersion: '3.x'
+              BuildConfiguration: debug
+              #DownloadSecureFile: 'false'
+              #RunArtifactoryUpload: 'true'
+              #Projects: '**/*.sln'
+              #TestPath: "**/*Tests/*.csproj"
+              RunTests: true
+              ZipAfterPublish: false
+              SonarScan: true
