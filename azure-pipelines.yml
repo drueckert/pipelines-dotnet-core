@@ -28,6 +28,7 @@ steps:
     feedsToUse: 'config'
     nugetConfigPath: './nuget.config'
     externalFeedCredentials: 'DR External Artifactory'
+    noCache: true
 - task: DotNetCoreCLI@2
   displayName: DotNet Build
   inputs:
