@@ -20,19 +20,13 @@ steps:
     version: '3.x'
     includePreviewVersions: false
     performMultiLevelLookup: true
-- task: JavaToolInstaller@0
-  inputs:
-    versionSpec: '11'
-    jdkArchitectureOption: 'x64'
-    jdkSourceOption: 'LocalDirectory'
-    jdkFile: 'f:\java\OpenJDK11U-jdk_x64_windows_hotspot_11.0.7_10.zip'
-    jdkDestinationDirectory: '$(Agent.HomeDirectory)/java'
-    cleanDestinationDirectory: true
 
 - task: DotNetCoreCLI@2
+  displayName: DotNet Restore
   inputs:
     command: 'restore'
     feedsToUse: 'config'
+    nugetConfigPath: './nuget.config'
     externalFeedCredentials: 'DR External Artifactory'
 - task: DotNetCoreCLI@2
   displayName: DotNet Build
