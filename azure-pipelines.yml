@@ -30,6 +30,11 @@ steps:
     cleanDestinationDirectory: true
 
 - task: DotNetCoreCLI@2
+  inputs:
+    command: 'restore'
+    feedsToUse: 'config'
+    externalFeedCredentials: 'DR External Artifactory'
+- task: DotNetCoreCLI@2
   displayName: DotNet Build
   inputs:
     command: 'build'
