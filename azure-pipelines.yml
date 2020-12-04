@@ -28,11 +28,7 @@ steps:
     jdkFile: 'f:\java\OpenJDK11U-jdk_x64_windows_hotspot_11.0.7_10.zip'
     jdkDestinationDirectory: '$(Agent.HomeDirectory)/java'
     cleanDestinationDirectory: true
-- task: SonarQubePrepare@4
-  inputs:
-    SonarQube: 'ALM Connect SonarQube Prod'
-    scannerMode: 'MSBuild'
-    projectKey: 'DR-dotnetcore-test'
+
 - task: DotNetCoreCLI@2
   displayName: DotNet Build
   inputs:
@@ -50,4 +46,4 @@ steps:
   inputs:
     targetPath: '$(Build.ArtifactStagingDirectory)'
     publishLocation: 'pipeline'
-- task: SonarQubeAnalyze@4
+
